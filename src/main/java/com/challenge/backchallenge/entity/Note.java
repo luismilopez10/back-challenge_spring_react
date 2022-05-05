@@ -16,9 +16,9 @@ public class Note {
     @GeneratedValue
     private Long id;
 
-    private String title;
-
     private String message;
 
     private Boolean done;
+
+    private Long fkCategoryId;
 }
