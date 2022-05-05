@@ -3,10 +3,12 @@ package com.challenge.backchallenge.service;
 import com.challenge.backchallenge.entity.Category;
 import com.challenge.backchallenge.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import javax.validation.Validator;
 import java.util.List;
 
+@Service
 public class CategoryServiceImpl implements CategoryService {
 
     @Autowired
