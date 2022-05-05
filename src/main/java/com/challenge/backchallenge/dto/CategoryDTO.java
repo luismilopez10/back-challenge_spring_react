@@ -8,7 +8,7 @@ import java.util.List;
 @Data
 public class CategoryDTO {
 
-//    private Long id;
+    private Long id;
 
     private String name;
 

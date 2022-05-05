@@ -37,7 +37,7 @@ public class NoteServiceImpl implements NoteService{
             throw new Exception("The note is null");
         }
 
-        if(!noteRepository.existsById(entity.getId())) {
+        if(!noteRepository.existsById(entity.id)) {
             throw new Exception("The note doesn't exist");
         }
 

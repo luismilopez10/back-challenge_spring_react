@@ -14,7 +14,7 @@ public class Note {
 
     @Id
     @GeneratedValue
-    private Long id;
+    public Long id;
 
     private String message;
 

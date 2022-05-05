@@ -5,7 +5,6 @@ import com.challenge.backchallenge.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.validation.Validator;
 import java.util.List;
 
 @Service
@@ -13,9 +12,6 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Autowired
     CategoryRepository categoryRepository;
-
-    @Autowired
-    Validator validator;
 
     @Override
     public List<Category> findAll() {
@@ -37,7 +33,7 @@ public class CategoryServiceImpl implements CategoryService {
             throw new Exception("The category is null");
         }
 
-        if(!categoryRepository.existsById(entity.getId())) {
+        if(!categoryRepository.existsById(entity.id)) {
             throw new Exception("The category doesn't exist");
         }
 

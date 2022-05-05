@@ -8,11 +8,11 @@ import java.util.List;
 
 @Mapper
 public interface CategoryMapper {
-    public CategoryDTO categoryToCategoryDTO(Category category);
+    CategoryDTO categoryToCategoryDTO(Category category);
 
-    public CategoryDTO categoryDTOToCategory(Category category);
+    Category categoryDTOToCategory(CategoryDTO categoryDTO);
 
-    public List<CategoryDTO> categoryListToCategoryDTOList(List<Category> category);
+    List<CategoryDTO> categoryListToCategoryDTOList(List<Category> category);
 
-    public List<Category> categoryDTOListToCategoryList(List<CategoryDTO> categoryDTOs);
+    List<Category> categoryDTOListToCategoryList(List<CategoryDTO> categoryDTOs);
 }

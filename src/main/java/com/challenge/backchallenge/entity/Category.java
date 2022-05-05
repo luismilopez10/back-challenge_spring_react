@@ -12,10 +12,10 @@ import java.util.List;
 public class Category {
     @Id
     @GeneratedValue
-    private Long id;
+    public Long id;
 
     private String name;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "category", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Note> notes = new ArrayList<>();
 }
