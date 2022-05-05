@@ -1,5 +1,6 @@
 package com.challenge.backchallenge.dto;
 
+import com.challenge.backchallenge.entity.Note;
 import lombok.Data;
 
 import java.util.List;
@@ -11,5 +12,5 @@ public class CategoryDTO {
 
     private String name;
 
-    private List<String> notes;
+    private List<Note> notes;
 }
