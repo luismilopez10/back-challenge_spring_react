@@ -1,11 +1,12 @@
 package com.challenge.backchallenge.service;
 
+import com.challenge.backchallenge.entity.Category;
 import com.challenge.backchallenge.entity.Note;
+import com.challenge.backchallenge.repository.CategoryRepository;
 import com.challenge.backchallenge.repository.NoteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.validation.Validator;
 import java.util.List;
 
 @Service
@@ -15,7 +16,7 @@ public class NoteServiceImpl implements NoteService{
     NoteRepository noteRepository;
 
     @Autowired
-    Validator validator;
+    CategoryRepository categoryRepository;
 
     @Override
     public List<Note> findAll() {
@@ -23,25 +24,55 @@ public class NoteServiceImpl implements NoteService{
     }
 
     @Override
-    public Note save(Note entity) throws Exception {
-        if (entity == null) {
+    public Note save(Note note) throws Exception {
+        if (note == null) {
             throw new Exception("The note is null");
         }
-
-        return noteRepository.save(entity);
+        Category category = categoryRepository.findById(note.getFkCategoryId()).get();
+        category.addNote(note);
+        categoryRepository.save(category);
+        return noteRepository.save(note);
     }
 
     @Override
-    public Note update(Note entity) throws Exception {
-        if(entity==null) {
+    public Category saveToCategory(Note note) throws Exception {
+        if (note == null) {
+            throw new Exception("The note is null");
+        }
+        Category category = categoryRepository.findById(note.getFkCategoryId()).get();
+        category.addNote(note);
+        return categoryRepository.save(category);
+    }
+
+    @Override
+    public Note update(Note note) throws Exception {
+        if(note==null) {
             throw new Exception("The note is null");
         }
 
-        if(!noteRepository.existsById(entity.id)) {
+        if(!noteRepository.existsById(note.id)) {
             throw new Exception("The note doesn't exist");
         }
 
-        return noteRepository.save(entity);
+        Category category = categoryRepository.findById(note.getFkCategoryId()).get();
+        category.addNote(note);
+        categoryRepository.save(category);
+        return noteRepository.save(note);
+    }
+
+    @Override
+    public Category updateToCategory(Note note) throws Exception {
+        if(note==null) {
+            throw new Exception("The note is null");
+        }
+
+        if(!noteRepository.existsById(note.id)) {
+            throw new Exception("The note doesn't exist");
+        }
+
+        Category category = categoryRepository.findById(note.getFkCategoryId()).get();
+        noteRepository.save(note);
+        return category;
     }
 
     @Override

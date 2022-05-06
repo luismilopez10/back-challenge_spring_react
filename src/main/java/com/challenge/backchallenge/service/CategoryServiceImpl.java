@@ -19,25 +19,25 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public Category save(Category entity) throws Exception {
-        if (entity == null) {
+    public Category save(Category category) throws Exception {
+        if (category == null) {
             throw new Exception("The category is null");
         }
 
-        return categoryRepository.save(entity);
+        return categoryRepository.save(category);
     }
 
     @Override
-    public Category update(Category entity) throws Exception {
-        if(entity==null) {
+    public Category update(Category category) throws Exception {
+        if(category==null) {
             throw new Exception("The category is null");
         }
 
-        if(!categoryRepository.existsById(entity.id)) {
+        if(!categoryRepository.existsById(category.id)) {
             throw new Exception("The category doesn't exist");
         }
 
-        return categoryRepository.save(entity);
+        return categoryRepository.save(category);
     }
 
     @Override

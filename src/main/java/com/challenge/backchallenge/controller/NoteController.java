@@ -1,7 +1,10 @@
 package com.challenge.backchallenge.controller;
 
+import com.challenge.backchallenge.dto.CategoryDTO;
 import com.challenge.backchallenge.dto.NoteDTO;
+import com.challenge.backchallenge.entity.Category;
 import com.challenge.backchallenge.entity.Note;
+import com.challenge.backchallenge.mapper.CategoryMapper;
 import com.challenge.backchallenge.mapper.NoteMapper;
 import com.challenge.backchallenge.service.NoteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +18,13 @@ import java.util.List;
 public class NoteController {
 
     @Autowired
-    private NoteService noteService;
+    NoteService noteService;
 
     @Autowired
     NoteMapper noteMapper;
+
+    @Autowired
+    CategoryMapper categoryMapper;
 
     @GetMapping
     public List<NoteDTO> findAll() throws Exception{
@@ -28,21 +34,21 @@ public class NoteController {
     }
 
     @PostMapping
-    public NoteDTO save(@RequestBody NoteDTO noteDTO) throws Exception{
+    public CategoryDTO saveToCategory(@RequestBody NoteDTO noteDTO) throws Exception{
         Note note = noteMapper.noteDTOToNote(noteDTO);
-        note = noteService.save(note);
-        noteDTO = noteMapper.noteToNoteDTO(note);
+        Category category = noteService.saveToCategory(note);
+        CategoryDTO categoryDTO = categoryMapper.categoryToCategoryDTO(category);
 
-        return noteDTO;
+        return categoryDTO;
     }
 
     @PutMapping
-    public NoteDTO update(@RequestBody NoteDTO noteDTO)throws Exception{
+    public CategoryDTO updateToCategory(@RequestBody NoteDTO noteDTO)throws Exception{
         Note note = noteMapper.noteDTOToNote(noteDTO);
-        note = noteService.save(note);
-        noteDTO = noteMapper.noteToNoteDTO(note);
+        Category category = noteService.updateToCategory(note);
+        CategoryDTO categoryDTO = categoryMapper.categoryToCategoryDTO(category);
 
-        return noteDTO;
+        return categoryDTO;
     }
 
     @DeleteMapping("/{id}")

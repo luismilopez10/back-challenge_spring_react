@@ -2,10 +2,7 @@ package com.challenge.backchallenge.entity;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity(name = "Note")
 @Table(name = "note")
@@ -13,7 +10,7 @@ import javax.persistence.Table;
 public class Note {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy= GenerationType.AUTO)
     public Long id;
 
     private String message;
